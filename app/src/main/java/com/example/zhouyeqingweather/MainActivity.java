@@ -2,13 +2,18 @@ package com.example.zhouyeqingweather;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.zhouyeqingweather.db.MyDatabaseHelper;
 
+public class MainActivity extends AppCompatActivity {
+    private MyDatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        dbHelper = new MyDatabaseHelper(this, "City.db", null, 1);     创建数据库，名字：City.db，版本：1
+//        SQLiteDatabase database = dbHelper.getWritableDatabase();     打开数据库
     }
 }
