@@ -2,20 +2,20 @@ package com.example.zhouyeqingweather.db;
 
 public class County {
     private int id;
-    private String Name;
-    private String weather;
+    private String countyName;
+    private String weatherId;
     private int CityId;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setCountyName(String name) {
+        this.countyName = name;
     }
 
-    public void setWeather(String weather) {
-        this.weather = weather;
+    public void setWeatherId(String weather) {
+        this.weatherId = weather;
     }
 
     public void setCityId(int cityId) {
@@ -26,12 +26,12 @@ public class County {
         return id;
     }
 
-    public String getName() {
-        return Name;
+    public String getCountyName() {
+        return countyName;
     }
 
-    public String getWeather() {
-        return weather;
+    public String getWeatherId() {
+        return weatherId;
     }
 
     public int getCityId() {
