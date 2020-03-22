@@ -4,6 +4,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import com.example.zhouyeqingweather.db.MyDatabaseHelper;
+import com.example.zhouyeqingweather.gson.WeatherForecast;
+import com.example.zhouyeqingweather.gson.WeatherLifeStyle;
+import com.example.zhouyeqingweather.gson.WeatherNow;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,5 +61,44 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    //   将返回的JSON数据解析成WeatherNow实体类
+    public static WeatherNow handleWeatherNowResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, WeatherNow.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //   将返回的JSON数据解析成WeatherForecast实体类
+    public static WeatherForecast handleWeatherForecastResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, WeatherForecast.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //   将返回的JSON数据解析成WeatherLifeStyle实体类
+    public static WeatherLifeStyle handleWeatherLifeStyleResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, WeatherLifeStyle.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
