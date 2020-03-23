@@ -3,6 +3,7 @@ package com.example.zhouyeqingweather.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
@@ -28,6 +29,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         this.mContext = context;
+    }
+
+    public static void saveProvinceData(SQLiteDatabase db, String provinceName, String provinceCode) {
+        db.execSQL("INSERT INTO Province (provinceName, provinceCode) Values (?, ?)", new String[] {provinceName, provinceCode});
+    }
+
+    public static void saveCityData(SQLiteDatabase db, String cityName, String cityCode, String provinceId) {
+        db.execSQL("INSERT INTO City (cityName, cityCode, provinceId) Values (?, ?, ?)", new String[] {cityName, cityCode, provinceId});
+    }
+
+    public static void saveCountyData(SQLiteDatabase db, String countyName, String weatherId, String cityId) {
+        db.execSQL("INSERT INTO County (countyName, weatherId, cityId) Values (?, ?, ?)", new String[] {countyName, weatherId, cityId});
     }
 
     @Override
